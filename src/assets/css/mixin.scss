@@ -1,0 +1,109 @@
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+@mixin borderScale($direction) {
+  @if ($direction=='top') {
+    $direction: 'before';
+  } @else if ($direction=='bottom') {
+    $direction: 'after';
+  }
+  &:#{$direction} {
+    content: '';
+    height: 2px;
+    right: 0;
+    left: 0;
+    background: #E5E5E5;
+    @if ($direction=='before') {
+      top: 0;
+      //border-top: 1px #E5E5E5 solid;
+    } @else if ($direction=='after') {
+      bottom: 0;
+      //border-bottom: 1px #E5E5E5 solid;
+    }
+    position: absolute;
+    transform-origin: 0 0;
+    transform: scaleY(.4);
+  }
+}
+
+@mixin borderBothScale($direction) {
+  @if ($direction=='left') {
+    $direction: 'before';
+  } @else if ($direction=='right') {
+    $direction: 'after';
+  }
+  &:#{$direction} {
+    content: '';
+    height: 100%;
+    width: 1px;
+    background: #E5E5E5;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    @if ($direction=='before') {
+      left: 0;
+    } @else if ($direction=='after') {
+      right: 0;
+    }
+    transform-origin: 0 0;
+    transform: scaleX(.6);
+  }
+}
+
+
+@mixin fullScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin wh($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin ml($top, $left) {
+  margin-top: $top;
+  margin-left: $left;
+}
+
+@mixin sc($size, $color) {
+  font-size: $size;
+  color: $color;
+}
+
+@mixin fj($type: space-between) {
+  display: flex;
+  justify-content: $type;
+}
+
+@mixin fja($jc:center,$ai:center) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin wot($ws:nowrap,$of:hidden,$tof:ellipsis) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//box-sizing
+@mixin bs($type:border-box) {
+  box-sizing: $type;
+}
+
+@function pxTorem($px){
+  @return $px/75 *1rem
+}
+
+
+
+
